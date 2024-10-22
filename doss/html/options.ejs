@@ -1,0 +1,112 @@
+﻿<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Site Seçenekleri.">
+  <meta name="keywords" content="seçenekler, renkler, yazılar">
+  <meta name="author" content="usta">
+  <title>Site Seçenekleri - <%= opp.isim %></title>
+  <link rel="icon" href="/<%= opp.log %>">
+  <link rel="stylesheet" href="/options.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+</head>
+<body style="background-color: <%= opp.bod %>;">
+<div id="ustpanel" style="background-color: <%= opp.pane %>;">
+<div id="arka">
+ <a href="/"><img id="logo" src="/<%= opp.log %>"></a>
+</div>
+
+ <a href="/"><h1 id="site" style="color: <%= opp.syr %>;"><%= opp.isim %></h1></a>
+ <a href="/"><h2 id="slogan" style="color: <%= opp.ssr %>;"><%= opp.tur %></h2></a>
+
+<div id="panel">
+
+<div class="dropdown" id="sayfa">
+<input type="submit" class="dropbtn" onclick="return myFunction();" style="background-image: url(/sayfa.png);" value="">
+  <div id="myDropdown" class="dropdown-content">
+    <a href="/">Anasayfa</a>
+    <a href="/about">Hakkında</a>
+    <a href="/contact">İletişim</a>
+    <a href="/stok">Tüm <%= app.adlar %></a>
+  </div>
+</div>
+
+<div id="sol">
+ <a href = "/"><h3 style="color: <%= opp.pyr %>;">Anasayfa</h3></a>
+ <a href = "/about"><h3 style="color: <%= opp.pyr %>;">Hakkında</h3></a>
+ <a href = "/contact"><h3 style="color: <%= opp.pyr %>;">İletişim</h3></a>
+ <a href = "/stok"><h3 style="color: <%= opp.pyr %>;">Tüm <%= app.adlar %></h3></a>
+</div>
+
+<div class="dropdown" id="hesap">
+ <% if (oturum != null ) { %>
+<input type="submit" class="dropbtn2" onclick="return myFunction2();" style="background-image: url(/hesapp.png);" value="">
+ <% } else {%>
+<input type="submit" class="dropbtn2" onclick="return myFunction2();" style="background-image: url(/hesap.png);" value="">
+ <% } %>
+  <div id="myDropdown2" class="dropdown-content2"> <% if (oturum != null ) { %>
+   <a href = "/settings"><h3>Ayarlar</h3></a>
+  <a href = "/logout"><h3>Çıkış Yap</h3></a>
+ <% } else {%>
+  <a href = "/login"><h3>Giriş Yap</h3></a>
+  <a href = "/hesap"><h3>Kayıt Ol</h3></a>
+ <% } %>
+  </div>
+</div>
+<div id="sag">
+ <% if (oturum != null ) { %>
+   <a href = "/settings"><h3 style="color: <%= opp.pyr %>;">Ayarlar</h3></a>
+  <a href = "/logout"><h3 style="color: <%= opp.pyr %>;">Çıkış Yap</h3></a>
+ <% } else {%>
+  <a href = "/login"><h3 style="color: <%= opp.pyr %>;">Giriş Yap</h3></a>
+  <a href = "/hesap"><h3 style="color: <%= opp.pyr %>;">Kayıt Ol</h3></a>
+ <% } %>
+</div>
+</div>
+</div>
+
+<div id="orta">
+<div id="ort">
+  <h1 style="color: <%= opp.titl %>;">Site Seçenekleri</h1>
+
+  <form action = "/options/save" method = "POST" enctype="multipart/form-data">
+    <input type="file" accept=".png" class="log" name="log" id="log"><br>
+    <input type="text" class="duz" name="isim" id="isim" value="<%= opp.isim %>" placeholder="site ismi.." maxlength="15" required autofocus><br>
+    <input type="text" class="duz" name="tur" id="tur" value="<%= opp.tur %>" placeholder="site türü.." maxlength="20" required><br>
+    <input type="text" class="duz" name="syr" id="syr" value="<%= opp.syr %>" placeholder="site isminin rengi.." maxlength="20" required><br>
+    <input type="text" class="duz" name="ssr" id="ssr" value="<%= opp.ssr %>" placeholder="site türünün rengi.." maxlength="20" required><br>
+    <input type="text" class="duz" name="pyr" id="pyr" value="<%= opp.pyr %>" placeholder="panelin yazı rengi.." maxlength="20" required><br>
+    <input type="text" class="duz" name="pane" id="pane" value="<%= opp.pane %>" placeholder="panelin rengini yaz.." maxlength="20" required><br>
+    <input type="text" class="duz" name="bod" id="bod" value="<%= opp.bod %>" placeholder="arkaplan rengini yaz.." maxlength="20" required><br>
+    <input type="text" class="duz" name="titl" id="titl" value="<%= opp.titl %>" placeholder="başlık rengini yaz.." maxlength="20" required><br>
+    <input type="text" class="duz" name="deta" id="deta" value="<%= opp.deta %>" placeholder="detay rengini yaz.." maxlength="20" required><br>
+    <input type="text" class="duz" name="labe" id="labe" value="<%= opp.labe %>" placeholder="label rengini yaz.." maxlength="20" required><br>
+    <input type="text" class="duz" name="ay" id="ay" value="<%= opp.ay %>" placeholder="alt panel yazısı.." maxlength="30" required><br>
+    <input type="text" class="duz" name="apy" id="apy" value="<%= opp.apy %>" placeholder="alt panel yazı rengi.." maxlength="20" required><br>
+    <input type="text" class="duz" name="ap" id="ap" value="<%= opp.ap %>" placeholder="alt panel rengini yaz.." maxlength="20" required><br>
+    <input type="text" class="duz" name="buton" id="buton" value="<%= opp.buton %>" placeholder="buton rengini yaz.." maxlength="20" required><br>
+    <input type="text" class="duz" name="byr" id="byr" value="<%= opp.byr %>" placeholder="buton yazı rengi.." maxlength="20" required><br>
+    <input id="but" type="submit" value="Kaydet" style="color: <%= opp.byr %>; background-color: <%= opp.buton %>;">
+  </form>
+
+  <form action = "/options/reset" method = "POST">
+    <input id="butt" type="submit" value="Reset" style="color: <%= opp.byr %>; background-color: <%= opp.buton %>;">
+  </form>
+</div>
+</div>
+
+<div id="altpanel" style="background-color: <%= opp.ap %>;">
+  <a href="/options"><h4 style="color: <%= opp.apy %>;">↑ <%= opp.ay %> © Tüm Hakları Saklıdır.</h4></a>
+</div>
+
+
+<script>
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+function myFunction2() {
+  document.getElementById("myDropdown2").classList.toggle("show2");
+}
+</script>
+</body>
+</html>

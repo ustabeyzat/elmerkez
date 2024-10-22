@@ -1,0 +1,88 @@
+﻿<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Siteden bildiri.">
+  <meta name="keywords" content="bildiri, not">
+  <meta name="author" content="usta">
+  <title>Bildiri - <%= opp.isim %></title>
+  <link rel="icon" href="/<%= opp.log %>">
+  <link rel="stylesheet" href="/bildiri.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+</head>
+<body style="background-color: <%= opp.bod %>;">
+<div id="ustpanel" style="background-color: <%= opp.pane %>;">
+<div id="arka">
+ <a href="/"><img id="logo" src="/<%= opp.log %>"></a>
+</div>
+
+ <a href="/"><h1 id="site" style="color: <%= opp.syr %>;"><%= opp.isim %></h1></a>
+ <a href="/"><h2 id="slogan" style="color: <%= opp.ssr %>;"><%= opp.tur %></h2></a>
+
+<div id="panel">
+
+<div class="dropdown" id="sayfa">
+<input type="submit" class="dropbtn" onclick="return myFunction();" style="background-image: url(/sayfa.png);" value="">
+  <div id="myDropdown" class="dropdown-content">
+    <a href="/">Anasayfa</a>
+    <a href="/about">Hakkında</a>
+    <a href="/contact">İletişim</a>
+    <a href="/stok">Tüm <%= app.adlar %></a>
+  </div>
+</div>
+
+<div id="sol">
+ <a href = "/"><h3 style="color: <%= opp.pyr %>;">Anasayfa</h3></a>
+ <a href = "/about"><h3 style="color: <%= opp.pyr %>;">Hakkında</h3></a>
+ <a href = "/contact"><h3 style="color: <%= opp.pyr %>;">İletişim</h3></a>
+ <a href = "/stok"><h3 style="color: <%= opp.pyr %>;">Tüm <%= app.adlar %></h3></a>
+</div>
+
+<div class="dropdown" id="hesap">
+ <% if (oturum != null ) { %>
+<input type="submit" class="dropbtn2" onclick="return myFunction2();" style="background-image: url(/hesapp.png);" value="">
+ <% } else {%>
+<input type="submit" class="dropbtn2" onclick="return myFunction2();" style="background-image: url(/hesap.png);" value="">
+ <% } %>
+  <div id="myDropdown2" class="dropdown-content2"> <% if (oturum != null ) { %>
+   <a href = "/settings"><h3>Ayarlar</h3></a>
+  <a href = "/logout"><h3>Çıkış Yap</h3></a>
+ <% } else {%>
+  <a href = "/login"><h3>Giriş Yap</h3></a>
+  <a href = "/hesap"><h3>Kayıt Ol</h3></a>
+ <% } %>
+  </div>
+</div>
+<div id="sag">
+ <% if (oturum != null ) { %>
+   <a href = "/settings"><h3 style="color: <%= opp.pyr %>;">Ayarlar</h3></a>
+  <a href = "/logout"><h3 style="color: <%= opp.pyr %>;">Çıkış Yap</h3></a>
+ <% } else {%>
+  <a href = "/login"><h3 style="color: <%= opp.pyr %>;">Giriş Yap</h3></a>
+  <a href = "/hesap"><h3 style="color: <%= opp.pyr %>;">Kayıt Ol</h3></a>
+ <% } %>
+</div>
+</div>
+</div>
+
+
+  <a href="<%= sayfa %>"><h3 id="icerik" style="color: <%= opp.deta %>;"><%= er %></h3></a>
+
+  <div class="res">
+   <a href="<%= sayfa %>"><img id="res2" src="/onay.png"></a>
+  </div>
+
+<div id="altpanel" style="background-color: <%= opp.ap %>;">
+  <a href="<%= sayfa %>"><h4 style="color: <%= opp.apy %>;">↑ <%= opp.ay %> © Tüm Hakları Saklıdır.</h4></a>
+</div>
+
+<script>
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+function myFunction2() {
+  document.getElementById("myDropdown2").classList.toggle("show2");
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+﻿<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Bütün kayıtlı üyeler.">
+  <meta name="keywords" content="kayıtlı, üyeler, bütün">
+  <meta name="author" content="usta">
+  <title>Tüm Üyeler - <%= opp.isim %></title>
+  <link rel="icon" href="/<%= opp.log %>">
+  <link rel="stylesheet" href="/users.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+</head>
+<body style="background-color: <%= opp.bod %>;">
+<div id="ustpanel" style="background-color: <%= opp.pane %>;">
+<div id="arka">
+ <a href="/"><img id="logo" src="/<%= opp.log %>"></a>
+</div>
+
+ <a href="/"><h1 id="site" style="color: <%= opp.syr %>;"><%= opp.isim %></h1></a>
+ <a href="/"><h2 id="slogan" style="color: <%= opp.ssr %>;"><%= opp.tur %></h2></a>
+
+<div id="panel">
+
+<div class="dropdown" id="sayfa">
+<input type="submit" class="dropbtn" onclick="return myFunction();" style="background-image: url(/sayfa.png);" value="">
+  <div id="myDropdown" class="dropdown-content">
+    <a href="/">Anasayfa</a>
+    <a href="/about">Hakkında</a>
+    <a href="/contact">İletişim</a>
+    <a href="/stok">Tüm <%= app.adlar %></a>
+  </div>
+</div>
+
+<div id="sol">
+ <a href = "/"><h3 style="color: <%= opp.pyr %>;">Anasayfa</h3></a>
+ <a href = "/about"><h3 style="color: <%= opp.pyr %>;">Hakkında</h3></a>
+ <a href = "/contact"><h3 style="color: <%= opp.pyr %>;">İletişim</h3></a>
+ <a href = "/stok"><h3 style="color: <%= opp.pyr %>;">Tüm <%= app.adlar %></h3></a>
+</div>
+
+<div class="dropdown" id="hesap">
+ <% if (oturum != null ) { %>
+<input type="submit" class="dropbtn2" onclick="return myFunction2();" style="background-image: url(/hesapp.png);" value="">
+ <% } else {%>
+<input type="submit" class="dropbtn2" onclick="return myFunction2();" style="background-image: url(/hesap.png);" value="">
+ <% } %>
+  <div id="myDropdown2" class="dropdown-content2"> <% if (oturum != null ) { %>
+   <a href = "/settings"><h3>Ayarlar</h3></a>
+  <a href = "/logout"><h3>Çıkış Yap</h3></a>
+ <% } else {%>
+  <a href = "/login"><h3>Giriş Yap</h3></a>
+  <a href = "/hesap"><h3>Kayıt Ol</h3></a>
+ <% } %>
+  </div>
+</div>
+<div id="sag">
+ <% if (oturum != null ) { %>
+   <a href = "/settings"><h3 style="color: <%= opp.pyr %>;">Ayarlar</h3></a>
+  <a href = "/logout"><h3 style="color: <%= opp.pyr %>;">Çıkış Yap</h3></a>
+ <% } else {%>
+  <a href = "/login"><h3 style="color: <%= opp.pyr %>;">Giriş Yap</h3></a>
+  <a href = "/hesap"><h3 style="color: <%= opp.pyr %>;">Kayıt Ol</h3></a>
+ <% } %>
+</div>
+</div>
+</div>
+
+
+<div id="orta">
+ <h1 style="color: <%= opp.titl %>;">Tüm Üyeler</h1>
+<div id="ort">
+ <form action = "/hesap/delete" method = "POST">
+   
+  <% for (var i =1; i < all.split("*").length;  i++) { %>
+    <div id="orr" style="border-bottom: 2px <%= opp.titl %> dotted;">
+      <input type="checkbox" class="kutu" id="<%= no.split('*')[i] %>" name="sil" value="<%= no.split('*')[i] %>">
+
+      <h4><label for="<%= no.split('*')[i] %>" style="cursor: pointer; color: <%= opp.deta %>;">| <%= no.split("*")[i] %> | <%= all.split("*")[i] %> | <%= epos.split("*")[i] %> | <%= pas.split("*")[i] %> | <%= sev.split("*")[i] %> |</label></h4><br>
+  </div>
+  <% } %>
+  <input type="submit" id="but" value="Sil" style="color: <%= opp.byr %>; background-color: <%= opp.buton %>;"><br>
+ <div id="or">
+</div>
+ </form>
+</div>
+</div>
+
+<div id="altpanel" style="background-color: <%= opp.ap %>;">
+  <a href="/hesap/users"><h4 style="color: <%= opp.apy %>;">↑ <%= opp.ay %> © Tüm Hakları Saklıdır.</h4></a>
+</div>
+
+<script>
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+function myFunction2() {
+  document.getElementById("myDropdown2").classList.toggle("show2");
+}
+</script>
+</body>
+</html>

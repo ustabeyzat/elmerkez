@@ -1,0 +1,144 @@
+﻿<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="<%= opp.isim %> <%= opp.tur %> vizyonu, misyonu, yapacakları ve yaptıkları hakkında.">
+  <meta name="keywords" content="hakkında, yapılanlar, yapılacaklar, misyon, vizyon">
+  <meta name="author" content="usta">
+  <link rel="icon" href="/<%= opp.log %>">
+  <title>Hakkında - <%= opp.isim %></title>
+  <link rel="stylesheet" href="/about.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+</head>
+<body style="background-color: <%= opp.bod %>;">
+<div id="ustpanel" style="background-color: <%= opp.pane %>;">
+<div id="arka">
+ <a href="/"><img id="logo" src="/<%= opp.log %>"></a>
+</div>
+
+ <a href="/"><h1 id="site" style="color: <%= opp.syr %>;"><%= opp.isim %></h1></a>
+ <a href="/"><h2 id="slogan" style="color: <%= opp.ssr %>;"><%= opp.tur %></h2></a>
+
+<div id="panel">
+
+<div class="dropdown" id="sayfa">
+<input type="submit" class="dropbtn" onclick="return myFunction();" style="background-image: url(/sayfa.png);" value="">
+  <div id="myDropdown" class="dropdown-content">
+    <a href="/">Anasayfa</a>
+    <a href="/contact">İletişim</a>
+    <a href="/stok">Tüm <%= app.adlar %></a>
+  </div>
+</div>
+
+<div id="sol">
+ <a href = "/"><h3 style="color: <%= opp.pyr %>;">Anasayfa</h3></a>
+ <a href = "/contact"><h3 style="color: <%= opp.pyr %>;">İletişim</h3></a>
+ <a href = "/stok"><h3 style="color: <%= opp.pyr %>;">Tüm <%= app.adlar %></h3></a>
+</div>
+
+<div class="dropdown" id="hesap">
+ <% if (oturum != null ) { %>
+<input type="submit" class="dropbtn2" onclick="return myFunction2();" style="background-image: url(/hesapp.png);" value="">
+ <% } else {%>
+<input type="submit" class="dropbtn2" onclick="return myFunction2();" style="background-image: url(/hesap.png);" value="">
+ <% } %>
+  <div id="myDropdown2" class="dropdown-content2"> <% if (oturum != null ) { %>
+   <a href = "/settings"><h3>Ayarlar</h3></a>
+  <a href = "/logout"><h3>Çıkış Yap</h3></a>
+ <% } else {%>
+  <a href = "/login"><h3>Giriş Yap</h3></a>
+  <a href = "/hesap"><h3>Kayıt Ol</h3></a>
+ <% } %>
+  </div>
+</div>
+<div id="sag">
+ <% if (oturum != null ) { %>
+   <a href = "/settings"><h3 style="color: <%= opp.pyr %>;">Ayarlar</h3></a>
+  <a href = "/logout"><h3 style="color: <%= opp.pyr %>;">Çıkış Yap</h3></a>
+ <% } else {%>
+  <a href = "/login"><h3 style="color: <%= opp.pyr %>;">Giriş Yap</h3></a>
+  <a href = "/hesap"><h3 style="color: <%= opp.pyr %>;">Kayıt Ol</h3></a>
+ <% } %>
+</div>
+</div>
+</div>
+
+
+ <% if (abouts != "" && abouts != null) { %>
+ <div class="slide">
+  <% if (abouts.dosya.length != 0) { %>
+  <% for (var i =1; i < abouts.dosya.split("*").length;  i++) { %>
+    <img class="resim" id="<%= i %>" src="<%= abouts.dosya.split('*')[i] %>" style="display:none;">
+    <a href="<%= abouts.dosya.split('*')[i] %>"><h4 id="alan<%= i %>" style="display:none; color: <%= opp.deta %>;"><%= i %>/<%= abouts.dosya.split("*").length-1 %>(<%= abouts.dosya.split('*')[i].split(".")[1] %>)</h4></a>
+   <% }} else { %>
+    <img class="resim">
+    <h4 style="color: <%= opp.deta %>;">Dosya Yok</h4>
+   <% } %>
+
+  <button id="geri" onclick="geri(1)" style="color: <%= opp.deta %>;">&#10094;</button>
+  <button id="ileri" onclick="ileri(1)" style="color: <%= opp.deta %>;">&#10095;</button>
+</div>
+<div id="yaz">
+  <h1 style="color: <%= opp.titl %>;">Hakkında</h1>
+  <h2 style="color: <%= opp.deta %>;"><%= abouts.detay %></h2>
+  <h1 style="color: <%= opp.titl %>;">Hafta İçi Çalışma Saatleri</h1>
+  <h2 style="color: <%= opp.deta %>;"><%= abouts.hi %> | <%= abouts.hs %></h2>
+  <h1 style="color: <%= opp.titl %>;">Cumartesi Günü Çalışma Saati</h1>
+  <h2 style="color: <%= opp.deta %>;"><%= abouts.cti %> | <%= abouts.cts %></h2>
+  <h1 style="color: <%= opp.titl %>;">Pazar Günü Çalışma Saati</h1>
+  <h2 style="color: <%= opp.deta %>;"><%= abouts.pzi %> | <%= abouts.pzs %></h2>
+</div>
+<% var heps = abouts.dosya.split("*").length-1; %>
+<% } %>
+
+<div id="altpanel" style="background-color: <%= opp.ap %>;">
+  <a href="/about"><h4 style="color: <%= opp.apy %>;">↑ <%= opp.ay %> © Tüm Hakları Saklıdır.</h4></a>
+</div>
+
+<script>
+document.getElementById("1").style.display = "block";
+document.getElementById("alan1").style.display = "block";
+son = 1;
+
+function ileri(n) {
+  if (son < <%= heps %>) {
+    document.getElementById(son).style.display = "none";
+    document.getElementById("alan" + son).style.display = "none";
+    son = n + son;
+    document.getElementById(son).style.display = "block";
+    document.getElementById("alan" + son).style.display = "block";
+  }
+  else if (son == <%= heps %>) {
+    document.getElementById(son).style.display = "none";
+    document.getElementById("alan" + son).style.display = "none";
+    son = 1;
+    document.getElementById(son).style.display = "block";
+    document.getElementById("alan" + son).style.display = "block";
+  }
+}
+
+function geri(n) {
+  if (son > 1) {
+    document.getElementById(son).style.display = "none";
+    document.getElementById("alan" + son).style.display = "none";
+    son = son - n;
+    document.getElementById(son).style.display = "block";
+    document.getElementById("alan" + son).style.display = "block";
+  }
+  else if (son == 1) {
+    document.getElementById(son).style.display = "none";
+    document.getElementById("alan" + son).style.display = "none";
+    son = <%= heps %>;
+    document.getElementById(son).style.display = "block";
+    document.getElementById("alan" + son).style.display = "block";
+  }
+}
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+function myFunction2() {
+  document.getElementById("myDropdown2").classList.toggle("show2");
+}
+</script>
+</body>
+</html>

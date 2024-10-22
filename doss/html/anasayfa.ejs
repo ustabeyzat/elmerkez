@@ -1,0 +1,157 @@
+﻿<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="<%= opp.isim %> <%= opp.tur %> anasayfası.">
+  <meta name="keywords" content="anasayfa, ana, seçilen, seçilmiş, <%= opp.isim %>, <%= opp.tur %>, slide, <%= opp.ay %>, web, site, internet, sayfası, sayfa">
+  <meta name="author" content="usta">
+  <title>Anasayfa - <%= opp.isim %></title>
+  <link rel="icon" href="/<%= opp.log %>">
+  <link rel="stylesheet" href="/anasayfa.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+</head>
+<body style="background-color: <%= opp.bod %>;">
+<div id="ustpanel" style="background-color: <%= opp.pane %>;">
+<div id="arka">
+ <a href="/"><img id="logo" src="/<%= opp.log %>"></a>
+</div>
+
+ <a href="/"><h1 id="site" style="color: <%= opp.syr %>;"><%= opp.isim %></h1></a>
+ <a href="/"><h2 id="slogan" style="color: <%= opp.ssr %>;"><%= opp.tur %></h2></a>
+
+<div id="panel">
+
+<div class="dropdown" id="sayfa">
+<input type="submit" class="dropbtn" onclick="return myFunction();" style="background-image: url(/sayfa.png);" value="">
+  <div id="myDropdown" class="dropdown-content">
+    <a href="/about">Hakkında</a>
+    <a href="/contact">İletişim</a>
+    <a href="/stok">Tüm <%= app.adlar %></a>
+  </div>
+</div>
+
+<div id="sol">
+ <a href = "/about"><h3 style="color: <%= opp.pyr %>;">Hakkında</h3></a>
+ <a href = "/contact"><h3 style="color: <%= opp.pyr %>;">İletişim</h3></a>
+ <a href = "/stok"><h3 style="color: <%= opp.pyr %>;">Tüm <%= app.adlar %></h3></a>
+</div>
+
+<div class="dropdown" id="hesap">
+ <% if (oturum != null ) { %>
+<input type="submit" class="dropbtn2" onclick="return myFunction2();" style="background-image: url(/hesapp.png);" value="">
+ <% } else {%>
+<input type="submit" class="dropbtn2" onclick="return myFunction2();" style="background-image: url(/hesap.png);" value="">
+ <% } %>
+  <div id="myDropdown2" class="dropdown-content2"> <% if (oturum != null ) { %>
+   <a href = "/settings"><h3>Ayarlar</h3></a>
+  <a href = "/logout"><h3>Çıkış Yap</h3></a>
+ <% } else {%>
+  <a href = "/login"><h3>Giriş Yap</h3></a>
+  <a href = "/hesap"><h3>Kayıt Ol</h3></a>
+ <% } %>
+  </div>
+</div>
+<div id="sag">
+ <% if (oturum != null ) { %>
+   <a href = "/settings"><h3 style="color: <%= opp.pyr %>;">Ayarlar</h3></a>
+  <a href = "/logout"><h3 style="color: <%= opp.pyr %>;">Çıkış Yap</h3></a>
+ <% } else {%>
+  <a href = "/login" style="color: <%= opp.pyr %>;"><h3>Giriş Yap</h3></a>
+  <a href = "/hesap" style="color: <%= opp.pyr %>;"><h3>Kayıt Ol</h3></a>
+ <% } %>
+</div>
+</div>
+</div>
+
+  <div class="slide">
+  <% if (slidei.length != 0) { %>
+  <% for (var i =0; i < slidei.length;  i++) { %>
+    <img class="resim" id="<%= i %>" src="<%= slidei[i] %>" style="display:none;">
+  <% if (slidei[i] != "undefined") { %>
+    <a href="<%= slidei[i] %>"><h4 id="alan<%= i %>" style="display:none; color: <%= opp.deta %>;"><%= i+1 %>/<%= slidei.length %>(<%= slidei[i].split(".")[1] %>)</h4></a>
+    <% } else { %>
+    <h4 id="alan<%= i %>" style="display:none; color: <%= opp.deta %>;"><%= i+1 %>/<%= slidei.length %>(Dosya Yok)</h4>
+   <% } %>
+    <a href="/detay/<%= slideu[i] %>"><h2 id="slide<%= i %>" style="display:none; text-align: center; color: <%= opp.titl %>;"><%= sliden[i] %></h2></a>
+   <% }} else { %>
+    <img class="resim">
+    <h4 style="color: <%= opp.deta %>;">Dosya Yok</h4>
+   <% } %>
+
+  <button id="geri" onclick="geri(1)" style="color: <%= opp.deta %>;">&#10094;</button>
+  <button id="ileri"  onclick="ileri(1)" style="color: <%= opp.deta %>;">&#10095;</button>
+
+ </div>
+
+
+<div class="rusum">
+  <% if (alti.length != 0) { %>
+  <% for (var i =0; i < alti.length; i++) { %>
+  <div class="onem">
+    <a href="/detay/<%= altu[i] %>"><img class="resim2" id="alt<%= i %>" src="<%= alti[i] %>"></a><br>
+    <a href="/detay/<%= altu[i] %>"><h2 style="color: <%= opp.titl %>;"><%= altn[i] %></h2></a>
+  </div>
+  <% }} %>
+
+ <div id="altpanel" style="background-color: <%= opp.ap %>;">
+  <a href="/"><h4 style="color: <%= opp.apy %>;">↑ <%= opp.ay %> © Tüm Hakları Saklıdır.</h4></a>
+ </div>
+</div>
+
+<% var heps = slidei.length-1; %>
+<script>
+document.getElementById("0").style.display = "block";
+document.getElementById("slide0").style.display = "block";
+document.getElementById("alan0").style.display = "block";
+son = 0;
+
+function ileri(n) {
+  if (son < <%= heps %>) {
+    document.getElementById(son).style.display = "none";
+    document.getElementById("slide" + son).style.display = "none";
+    document.getElementById("alan" + son).style.display = "none";
+    son = son + 1;
+    document.getElementById(son).style.display = "block";
+    document.getElementById("slide" + son).style.display = "block";
+    document.getElementById("alan" + son).style.display = "block";
+  }
+  else if (son == <%= heps %>) {
+    document.getElementById(son).style.display = "none";
+    document.getElementById("slide" + son).style.display = "none";
+    document.getElementById("alan" + son).style.display = "none";
+    son = 0;
+    document.getElementById(son).style.display = "block";
+    document.getElementById("slide" + son).style.display = "block";
+    document.getElementById("alan" + son).style.display = "block";
+  }
+}
+
+function geri(n) {
+  if (son > 0) {
+    document.getElementById(son).style.display = "none";
+    document.getElementById("slide" + son).style.display = "none";
+    document.getElementById("alan" + son).style.display = "none";
+    son = son - 1;
+    document.getElementById(son).style.display = "block";
+    document.getElementById("slide" + son).style.display = "block";
+    document.getElementById("alan" + son).style.display = "block";
+  }
+  else if (son == 0) {
+    document.getElementById(son).style.display = "none";
+    document.getElementById("slide" + son).style.display = "none";
+    document.getElementById("alan" + son).style.display = "none";
+    son = <%= heps %>;
+    document.getElementById(son).style.display = "block";
+    document.getElementById("slide" + son).style.display = "block";
+    document.getElementById("alan" + son).style.display = "block";
+  }
+}
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+function myFunction2() {
+  document.getElementById("myDropdown2").classList.toggle("show2");
+}
+</script>
+</body>
+</html>

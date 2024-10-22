@@ -1,0 +1,149 @@
+﻿<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Hesap Güncelleme.">
+  <meta name="keywords" content="hesap, güncelle, güncelleme, kullanıcı, parola, ad, adı, nick, password, update, name">
+  <meta name="author" content="usta">
+  <title>Hesap Güncelle - <%= opp.isim %></title>
+  <link rel="icon" href="/<%= opp.log %>">
+  <link rel="stylesheet" href="/pass.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+</head>
+<body style="background-color: <%= opp.bod %>;">
+<div id="ustpanel" style="background-color: <%= opp.pane %>;">
+<div id="arka">
+ <a href="/"><img id="logo" src="/<%= opp.log %>"></a>
+</div>
+
+ <a href="/"><h1 id="site" style="color: <%= opp.syr %>;"><%= opp.isim %></h1></a>
+ <a href="/"><h2 id="slogan" style="color: <%= opp.ssr %>;"><%= opp.tur %></h2></a>
+
+<div id="panel">
+
+<div class="dropdown" id="sayfa">
+<input type="submit" class="dropbtn" onclick="return myFunction();" style="background-image: url(/sayfa.png);" value="">
+  <div id="myDropdown" class="dropdown-content">
+    <a href="/">Anasayfa</a>
+    <a href="/about">Hakkında</a>
+    <a href="/contact">İletişim</a>
+    <a href="/stok">Tüm <%= app.adlar %></a>
+  </div>
+</div>
+
+<div id="sol">
+ <a href = "/"><h3 style="color: <%= opp.pyr %>;">Anasayfa</h3></a>
+ <a href = "/about"><h3 style="color: <%= opp.pyr %>;">Hakkında</h3></a>
+ <a href = "/contact"><h3 style="color: <%= opp.pyr %>;">İletişim</h3></a>
+ <a href = "/stok"><h3 style="color: <%= opp.pyr %>;">Tüm <%= app.adlar %></h3></a>
+</div>
+
+<div class="dropdown" id="hesap">
+ <% if (oturum != null ) { %>
+<input type="submit" class="dropbtn2" onclick="return myFunction2();" style="background-image: url(/hesapp.png);" value="">
+ <% } else {%>
+<input type="submit" class="dropbtn2" onclick="return myFunction2();" style="background-image: url(/hesap.png);" value="">
+ <% } %>
+  <div id="myDropdown2" class="dropdown-content2"> <% if (oturum != null ) { %>
+   <a href = "/settings"><h3>Ayarlar</h3></a>
+  <a href = "/logout"><h3>Çıkış Yap</h3></a>
+ <% } else {%>
+  <a href = "/login"><h3>Giriş Yap</h3></a>
+ <% } %>
+  </div>
+</div>
+<div id="sag">
+ <% if (oturum != null ) { %>
+   <a href = "/settings"><h3 style="color: <%= opp.pyr %>;">Ayarlar</h3></a>
+  <a href = "/logout"><h3 style="color: <%= opp.pyr %>;">Çıkış Yap</h3></a>
+ <% } else {%>
+  <a href = "/login"><h3 style="color: <%= opp.pyr %>;">Giriş Yap</h3></a>
+ <% } %>
+</div>
+</div>
+</div>
+
+
+  <h1 style="color: <%= opp.titl %>;">Hesap Güncelle</h1>
+
+<div id="adform">
+  <form action = "/hesap/update" method = "POST">
+
+<div id="ya4">
+<div id="ya2">
+    <input type="password" name="eparola" id="eparola" placeholder="parolanı yaz.." maxlength="25" required autofocus>
+</div>
+
+<div id="ya3">
+    <img id="falan2" src="gor.png" height="15" onclick="gos2()"><br>
+</div>
+</div>
+
+<div id="ya">
+<div id="ya2">
+    <input type="text" name="nick" id="nick" placeholder="yeni kullanıcı adını Yaz.." value="<%= oturum %>" maxlength="20" required><br>
+</div>
+</div>
+
+<div id="ya4">
+<div id="ya2">
+    <input type="password" name="parola" id="parola" placeholder=" yeni parolanı yaz.." maxlength="25" required>
+</div>
+
+<div id="ya3">
+    <img id="falan" src="gor.png" height="15" onclick="gos()"><br>
+</div>
+</div>
+
+<div id="ya5">
+    <input type="submit" id="but" value="Hesabı Güncelle" style="color: <%= opp.byr %>; background-color: <%= opp.buton %>;">
+</div>
+
+  </form>
+</div>
+
+
+<div id="altpanel" style="background-color: <%= opp.ap %>;">
+  <a href="/hesap/pass"><h4 style="color: <%= opp.apy %>;">↑ <%= opp.ay %> © Tüm Hakları Saklıdır.</h4></a>
+</div>
+
+<script>
+function gos() {
+  par = document.getElementById("parola");
+  fal = document.getElementById("falan");
+  if (par.type == "password") {
+    par.type = "text";
+    fal.src = "gor2.png";
+    par.focus();
+  }
+  else {
+    par.type = "password";
+    fal.src = "gor.png";
+    par.focus();
+  }
+}
+
+function gos2() {
+  par = document.getElementById("eparola");
+  fal = document.getElementById("falan2");
+  if (par.type == "password") {
+    par.type = "text";
+    fal.src = "gor2.png";
+    par.focus();
+  }
+  else {
+    par.type = "password";
+    fal.src = "gor.png";
+    par.focus();
+  }
+}
+
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+function myFunction2() {
+  document.getElementById("myDropdown2").classList.toggle("show2");
+}
+</script>
+</body>
+</html>

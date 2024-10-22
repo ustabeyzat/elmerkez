@@ -1,0 +1,130 @@
+﻿<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Tüm <%= app.adlar %>.">
+  <meta name="keywords" content="tüm, hepsi, toplu, tamamı, <%= app.adlar %>, kategori, kategoriler, arama, ara, aramalar, liste, listeler, çeşit, çeşitler, stok, arşiv, arşivler">
+  <meta name="author" content="usta">
+  <title>Tüm <%= app.adlar %> - <%= opp.isim %></title>
+  <link rel="icon" href="/<%= opp.log %>">
+  <link rel="stylesheet" href="/stok.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+</head>
+<body style="background-color: <%= opp.bod %>;">
+<div id="ustpanel" style="background-color: <%= opp.pane %>;">
+<div id="arka">
+ <a href="/"><img id="logo" src="/<%= opp.log %>"></a>
+</div>
+
+ <a href="/"><h1 id="site" style="color: <%= opp.syr %>;"><%= opp.isim %></h1></a>
+ <a href="/"><h2 id="slogan" style="color: <%= opp.ssr %>;"><%= opp.tur %></h2></a>
+
+<div id="panel">
+
+<div class="dropdown" id="sayfa">
+<input type="submit" class="dropbtn" onclick="return myFunction();" style="background-image: url(/sayfa.png);" value="">
+  <div id="myDropdown" class="dropdown-content">
+    <a href="/">Anasayfa</a>
+    <a href="/about">Hakkında</a>
+    <a href="/contact">İletişim</a>
+  </div>
+</div>
+
+<div id="sol">
+ <a href = "/"><h3 style="color: <%= opp.pyr %>;">Anasayfa</h3></a>
+ <a href = "/about"><h3 style="color: <%= opp.pyr %>;">Hakkında</h3></a>
+ <a href = "/contact"><h3 style="color: <%= opp.pyr %>;">İletişim</h3></a>
+</div>
+
+<div class="dropdown" id="hesap">
+ <% if (oturum != null ) { %>
+<input type="submit" class="dropbtn2" onclick="return myFunction2();" style="background-image: url(/hesapp.png);" value="">
+ <% } else {%>
+<input type="submit" class="dropbtn2" onclick="return myFunction2();" style="background-image: url(/hesap.png);" value="">
+ <% } %>
+  <div id="myDropdown2" class="dropdown-content2"> <% if (oturum != null ) { %>
+   <a href = "/settings"><h3>Ayarlar</h3></a>
+  <a href = "/logout"><h3>Çıkış Yap</h3></a>
+ <% } else {%>
+  <a href = "/login"><h3>Giriş Yap</h3></a>
+  <a href = "/hesap"><h3>Kayıt Ol</h3></a>
+ <% } %>
+  </div>
+</div>
+<div id="sag">
+ <% if (oturum != null ) { %>
+   <a href = "/settings"><h3 style="color: <%= opp.pyr %>;">Ayarlar</h3></a>
+  <a href = "/logout"><h3 style="color: <%= opp.pyr %>;">Çıkış Yap</h3></a>
+ <% } else {%>
+  <a href = "/login"><h3 style="color: <%= opp.pyr %>;">Giriş Yap</h3></a>
+  <a href = "/hesap"><h3 style="color: <%= opp.pyr %>;">Kayıt Ol</h3></a>
+ <% } %>
+</div>
+</div>
+</div>
+
+  <h1 id="bas" style="color: <%= opp.titl %>;">Tüm <%= app.adlar %></h1>
+
+  <div id="aratablo">
+  	<form id="forma" action="/stok/search" method="POST">
+
+     <div class="kategoriler" id="kategoriler">
+       <select name="liste" id="liste" onchange="return fonk();">
+         <option value="">KATEGORİLER</option>
+         <% if (app.kategoriler != "") { %>
+           <% for (var i =0; i < app.kategoriler.split("#").length;  i++) { %>
+           <option value="<%= app.kategoriler.split('#')[i] %>"><%= app.kategoriler.split('#')[i] %></option>
+         <% }} %>
+       </select>
+     </div>
+     <div id="alti">
+  	   <input id="arama" type="text" name="arama" placeholder="ne aradığınızı yazın.." autofocus>
+  	   <input id="but" type="submit" value="Ara" style="color: <%= opp.byr %>; background-color: grey;" disabled>
+  	 </div>
+    </form>
+  </div>
+
+<div id="ort">
+<div id="orta">
+  <% for (var i =1; i < stok.split("*").length;  i++) { %>
+   <div id="urun" class="tek<%= i %>" style="border-bottom: 2px <%= opp.titl %> dotted;">
+   	<div id="so">
+      <a href="/detay/<%= id.split('*')[i] %>"><img class="resim" id="<%= i %>" src="<%= img.split('*')[i] %>" height="100%"></a>
+  </div>
+   <a href="/detay/<%= id.split('*')[i] %>"><h4 style="color: <%= opp.deta %>;"><%= stok.split("*")[i] %></h4></a>
+  </div>
+ <% } %>
+</div>
+</div>
+
+<div id="altpanel" style="background-color: <%= opp.ap %>;">
+  <a href="/stok"><h4 style="color: <%= opp.apy %>;">↑ <%= opp.ay %> © Tüm Hakları Saklıdır.</h4></a>
+</div>
+<script>
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+function myFunction2() {
+  document.getElementById("myDropdown2").classList.toggle("show2");
+}
+function fonk() {
+  kategori = document.getElementById("liste").value;
+  if (kategori != "") {
+    document.getElementById("forma").submit();
+  }
+}
+input = document.querySelector("#arama");
+input.addEventListener('input', updateValue);
+function updateValue(e) {
+ if (arama.value != "") {
+  document.getElementById("but").disabled = false;
+  document.getElementById("but").style.backgroundColor = "<%= opp.buton %>";
+ }
+ else {
+  document.getElementById("but").disabled = true;
+  document.getElementById("but").style.backgroundColor = "grey";
+ }
+}
+</script>
+</body>
+</html>
