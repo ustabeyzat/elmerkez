@@ -12,7 +12,9 @@ express ile genel amaçlı bir web sitesi
 * main.js içinde mysql ve eposta bilgilerini girmeyi unutmayın!
 
 * giriş panelinde varsayılan
+
 kullanıcı adı: usta
+
 şifre: parola
 
 
