@@ -18,5 +18,8 @@ kullanıcı adı: usta
 şifre: parola
 
 
-https://github.com/user-attachments/assets/c46bc9be-418b-475b-8f1c-f3947d76ade7
+
+
+https://github.com/user-attachments/assets/e46f03d0-baed-44df-a22d-d3b9223bc771
+
 
