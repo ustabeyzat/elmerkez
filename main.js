@@ -14,8 +14,8 @@ kon = {
 tran = {
   service: 'gmail',
   auth: {
-    user: 'imajreklamajans.com@gmail.com',
-    pass: '018108-aeA'
+    user: 'eposta@gmail.com',
+    pass: 'parola'
   }
 }
 
